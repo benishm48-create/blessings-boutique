@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-ink font-body antialiased transition-colors duration-500;
+}
+
+.dark body {
+  @apply bg-ink-950 text-pearl;
+}
+
+::selection {
+  background-color: #c9a96e;
+  color: #ffffff;
+}
+
+/* Thin gold scrollbar — a quiet nod to the thread motif used across the site */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d8c3a5;
+  border-radius: 999px;
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-body text-xs tracking-widest2 uppercase text-clay dark:text-beige;
+  }
+
+  .section-heading {
+    @apply font-display text-3xl md:text-5xl leading-tight text-ink dark:text-cream;
+  }
+
+  .container-lux {
+    @apply max-w-7xl mx-auto px-6 md:px-10 lg:px-16;
+  }
+
+  .btn-gold {
+    @apply relative inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full
+      bg-gold-gradient text-white font-body text-sm tracking-wide
+      shadow-gold transition-transform duration-300 hover:scale-[1.03] active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full
+      border border-ink/20 dark:border-cream/30 text-ink dark:text-cream font-body text-sm tracking-wide
+      transition-all duration-300 hover:border-gold hover:text-gold-dark;
+  }
+
+  /* Signature element: a hand-stitched thread rule beneath section eyebrows,
+     evoking the boutique's tailoring — used sparingly, once per section. */
+  .stitch-rule {
+    @apply relative h-[2px] w-16 my-4;
+    background-image: repeating-linear-gradient(
+      90deg,
+      #c9a96e 0px,
+      #c9a96e 6px,
+      transparent 6px,
+      transparent 11px
+    );
+  }
+}
