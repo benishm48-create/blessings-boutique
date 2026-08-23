@@ -4,6 +4,7 @@ no secret (DB password, email password, Twilio token) ever lives in the code.
 
 Copy `.env.example` to `.env` and fill in your real values before running.
 """
+
 import os
 from dotenv import load_dotenv
 
@@ -11,7 +12,11 @@ load_dotenv()
 
 
 def _csv_env(name: str, default: str) -> list[str]:
-    return [value.strip() for value in os.getenv(name, default).split(",") if value.strip()]
+    return [
+        value.strip()
+        for value in os.getenv(name, default).split(",")
+        if value.strip()
+    ]
 
 
 class Settings:
@@ -22,10 +27,14 @@ class Settings:
     )
 
     # ---- CORS ----
-    FRONTEND_ORIGINS: list[str] = _csv_env("FRONTEND_ORIGINS", "http://localhost:5173")
+    FRONTEND_ORIGINS: list[str] = _csv_env(
+        "FRONTEND_ORIGINS",
+        "http://localhost:5173",
+    )
 
     # ---- Admin-only API protection ----
-    # Use a long random value in production. Send it only in the X-Admin-Key header.
+    # Use a long random value in production.
+    # Send it only in the X-Admin-Key header.
     ADMIN_API_KEY: str = os.getenv("ADMIN_API_KEY", "")
 
     # ---- Email (SMTP) ----
@@ -36,11 +45,22 @@ class Settings:
     SMTP_FROM_EMAIL: str = os.getenv("SMTP_FROM_EMAIL", "")
     SHOP_OWNER_EMAIL: str = os.getenv("SHOP_OWNER_EMAIL", "")
 
-    # ---- WhatsApp ----
-    SHOP_WHATSAPP_NUMBER: str = os.getenv("SHOP_WHATSAPP_NUMBER", "919876543210")
+    # ---- Resend Email API ----
+    RESEND_API_KEY: str = os.getenv("RESEND_API_KEY", "")
+    RESEND_FROM_EMAIL: str = os.getenv(
+        "RESEND_FROM_EMAIL",
+        "onboarding@resend.dev",
+    )
 
-    # Twilio automatic WhatsApp (optional). TWILIO_CONTENT_SID is used for
-    # approved/template messaging; if blank, the service falls back to body text.
+    # ---- WhatsApp ----
+    SHOP_WHATSAPP_NUMBER: str = os.getenv(
+        "SHOP_WHATSAPP_NUMBER",
+        "919876543210",
+    )
+
+    # ---- Twilio automatic WhatsApp ----
+    # TWILIO_CONTENT_SID is used for approved/template messaging.
+    # If blank, the service falls back to body text.
     TWILIO_ACCOUNT_SID: str = os.getenv("TWILIO_ACCOUNT_SID", "")
     TWILIO_AUTH_TOKEN: str = os.getenv("TWILIO_AUTH_TOKEN", "")
     TWILIO_WHATSAPP_FROM: str = os.getenv("TWILIO_WHATSAPP_FROM", "")
