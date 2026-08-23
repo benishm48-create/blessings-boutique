@@ -1,4 +1,4 @@
-# Maison Élan Boutique — Backend (Python + FastAPI + PostgreSQL)
+# Blessings Boutique — Backend (Python + FastAPI + PostgreSQL)
 
 This is the backend for your React/Vite boutique frontend. It gives you:
 
