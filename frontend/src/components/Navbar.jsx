@@ -32,6 +32,7 @@ export default function Navbar({
   const handleNavClick = (e, href) => {
     e.preventDefault();
     setMenuOpen(false);
+
     document.querySelector(href)?.scrollIntoView({
       behavior: "smooth",
     });
@@ -56,9 +57,9 @@ export default function Navbar({
           aria-label="Blessings Boutique Home"
         >
           <img
-            src="/logo.png"
+            src={darkMode ? "/logo.png" : "/logo-dark.png"}
             alt="Blessings Boutique"
-            className="h-12 sm:h-14 w-auto object-contain"
+            className="h-12 sm:h-14 w-auto object-contain transition-all duration-300"
           />
         </a>
 
