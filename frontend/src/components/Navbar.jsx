@@ -12,7 +12,12 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
-export default function Navbar({ cartCount, onCartClick, darkMode, onToggleDark }) {
+export default function Navbar({
+  cartCount,
+  onCartClick,
+  darkMode,
+  onToggleDark,
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -20,13 +25,16 @@ export default function Navbar({ cartCount, onCartClick, darkMode, onToggleDark 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const handleNavClick = (e, href) => {
     e.preventDefault();
     setMenuOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    document.querySelector(href)?.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   const solid = scrolled || menuOpen;
@@ -44,9 +52,14 @@ export default function Navbar({ cartCount, onCartClick, darkMode, onToggleDark 
         <a
           href="#home"
           onClick={(e) => handleNavClick(e, "#home")}
-          className="font-display text-2xl tracking-wide text-ink dark:text-cream"
+          className="flex items-center"
+          aria-label="Blessings Boutique Home"
         >
-          Blessings <span className="text-gold-dark">Boutique</span>
+          <img
+            src="/favicon.jpeg"
+            alt="Blessings Boutique"
+            className="h-12 sm:h-14 w-auto object-contain"
+          />
         </a>
 
         {/* Desktop links */}
@@ -60,6 +73,7 @@ export default function Navbar({ cartCount, onCartClick, darkMode, onToggleDark 
                   transition-colors duration-300 group"
               >
                 {l.label}
+
                 <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-gold-dark transition-all duration-300 group-hover:w-full" />
               </a>
             </li>
@@ -75,6 +89,7 @@ export default function Navbar({ cartCount, onCartClick, darkMode, onToggleDark 
           >
             <Search size={19} />
           </button>
+
           <button
             aria-label="Toggle dark mode"
             onClick={onToggleDark}
@@ -82,18 +97,21 @@ export default function Navbar({ cartCount, onCartClick, darkMode, onToggleDark 
           >
             {darkMode ? <Sun size={19} /> : <Moon size={19} />}
           </button>
+
           <button
             aria-label="Shopping cart"
             onClick={onCartClick}
             className="relative p-2 text-ink dark:text-cream hover:text-gold-dark transition-colors"
           >
             <ShoppingBag size={19} />
+
             {cartCount > 0 && (
               <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gold-dark text-white text-[10px] flex items-center justify-center">
                 {cartCount}
               </span>
             )}
           </button>
+
           <button
             aria-label="Open menu"
             onClick={() => setMenuOpen((m) => !m)}
