@@ -56,7 +56,7 @@ export default function Navbar({
           aria-label="Blessings Boutique Home"
         >
           <img
-            src="/favicon.jpeg"
+            src="/logo.png"
             alt="Blessings Boutique"
             className="h-12 sm:h-14 w-auto object-contain"
           />
