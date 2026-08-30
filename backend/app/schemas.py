@@ -230,3 +230,13 @@ class ContactOut(BaseModel):
 
 class NewsletterIn(CleanModel):
     email: EmailStr
+
+
+class AdminLogin(BaseModel):
+    username: str = Field(min_length=1, max_length=100)
+    password: str = Field(min_length=1, max_length=200)
+
+
+class AdminToken(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
